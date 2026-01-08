@@ -1,0 +1,149 @@
+@use '../../../../styles' as *;
+
+:host {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.page-container {
+  display: grid;
+  grid-template-columns: 65% 35%; // A divisão solicitada
+  height: 100%;
+  width: 100%;
+
+  // Lado Esquerdo: Imagem
+  .image-side {
+    position: relative;
+    // Opção 2: Se a opção acima falhar no seu ambiente, use o caminho relativo exato:
+    background: url('../../../../assets/images/login-pharmacy.webp') no-repeat center center;    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    padding: 4rem;
+
+    // Overlay para garantir leitura do texto sobre a imagem
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+    }
+
+    .brand-info {
+      position: relative; // Fica acima do overlay
+      color: white;
+      z-index: 1;
+
+      h1 {
+        font-size: 3.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+      }
+
+      p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  // Lado Direito: Formulário
+  .form-side {
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-shadow: -10px 0 20px rgba(0,0,0,0.05);
+
+    .auth-container {
+      width: 100%;
+      max-width: 380px;
+
+      h2 {
+        color: $primary-color;
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .subtitle {
+        color: $gray-medium;
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+      }
+
+      .form-field {
+        margin-bottom: 1.5rem;
+
+        label {
+          display: block;
+          margin-bottom: 0.5rem;
+          font-weight: 600;
+          font-size: 0.85rem;
+          color: #444;
+        }
+
+        input {
+          width: 100%;
+          padding: 0.85rem;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          background-color: $gray-light;
+          transition: all 0.2s;
+
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+            background-color: white;
+            box-shadow: 0 0 0 4px rgba($primary-color, 0.1);
+          }
+        }
+      }
+
+      button {
+        width: 100%;
+        padding: 1rem;
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.1s, background 0.2s;
+
+        &:hover { background-color: $primary-dark; }
+        &:active { transform: scale(0.98); }
+        &:disabled { background-color: #ccc; cursor: not-allowed; }
+      }
+
+      .footer-links {
+        margin-top: 2rem;
+        text-align: center;
+        font-size: 0.9rem;
+
+        a {
+          color: $primary-color;
+          text-decoration: none;
+          font-weight: 600;
+          &:hover { text-decoration: underline; }
+        }
+
+        p { margin-top: 1rem; color: #888; }
+      }
+    }
+  }
+}
+
+// Responsividade: Em telas pequenas, vira uma coluna única
+@media (max-width: 1024px) {
+  .page-container {
+    grid-template-columns: 1fr;
+
+    .image-side { display: none; }
+    .form-side { background-color: #f8f9fa; }
+  }
+}
