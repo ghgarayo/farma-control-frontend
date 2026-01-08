@@ -16,8 +16,7 @@
   // Lado Esquerdo: Imagem
   .image-side {
     position: relative;
-    // Opção 2: Se a opção acima falhar no seu ambiente, use o caminho relativo exato:
-    background: url('../../../../assets/images/login-pharmacy.webp') no-repeat center center;    background-size: cover;
+    background: url('../../../../assets/images/login-pharmacy') no-repeat center center;    background-size: cover;
     display: flex;
     align-items: flex-end;
     padding: 4rem;

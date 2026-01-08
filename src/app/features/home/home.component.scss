@@ -1,0 +1,49 @@
+@use '../../../styles' as *;
+
+.home-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .welcome-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid $gray-light;
+    padding-bottom: 2rem;
+
+    .user-info {
+      h1 {
+        font-size: 2.5rem;
+        color: $primary-dark;
+        span { color: $accent-color; }
+      }
+      p { color: $gray-medium; font-size: 1.1rem; }
+    }
+
+    .time-card {
+      text-align: right;
+      background: $white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: $shadow;
+
+      .date { display: block; font-size: 0.9rem; color: $gray-medium; text-transform: capitalize; }
+      .clock { display: block; font-size: 1.8rem; font-weight: 700; color: $primary-color; }
+    }
+  }
+
+  .dashboard-overview {
+    margin-top: 3rem;
+    .placeholder-card {
+      height: 200px;
+      border: 2px dashed #ccc;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #999;
+      font-size: 1.2rem;
+    }
+  }
+}
