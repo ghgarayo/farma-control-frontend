@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {throwError} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +20,11 @@ export abstract class BaseService {
   /**
    * Tratamento de erro padronizado para todos os serviços
    */
-  protected extractData(response: any) {
-    return response || {};
+  protected extractData<T>(response: T): T {
+    return response || {} as T;
   }
 
-  protected handleError(error: HttpErrorResponse) {
+  protected handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = '';
 
     if (error.error instanceof ErrorEvent) {

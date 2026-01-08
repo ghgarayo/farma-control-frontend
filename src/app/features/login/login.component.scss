@@ -1,4 +1,4 @@
-@use '../../../../styles' as *;
+@use '../../../styles' as *;
 
 :host {
   display: block;
@@ -16,7 +16,7 @@
   // Lado Esquerdo: Imagem
   .image-side {
     position: relative;
-    background: url('../../../../assets/images/login-pharmacy') no-repeat center center;    background-size: cover;
+    background: url('../../../assets/images/login-pharmacy.jpg') no-repeat center center;    background-size: cover;
     display: flex;
     align-items: flex-end;
     padding: 4rem;

@@ -1,7 +1,8 @@
 import { Component, signal, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../core/services/auth.service';
+import { LoginRequest, LoginResponse } from '@shared/models/auth.model';
 
 @Component({
   selector: 'login',
@@ -33,14 +34,14 @@ export class LoginComponent {
     this.isLoading.set(true);
     this.errorMessage.set(null);
 
-    const credentials = this.loginForm.getRawValue();
+    const credentials: LoginRequest = this.loginForm.getRawValue();
 
     this.authService.login(credentials).subscribe({
-      next: (response) => {
+      next: (response: LoginResponse) => {
         console.log('Login realizado com sucesso:', response);
         this.router.navigate(['/home']);
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error('Erro no login:', err);
         this.errorMessage.set(err.message || 'Credenciais inválidas ou erro de conexão.');
         this.isLoading.set(false);
