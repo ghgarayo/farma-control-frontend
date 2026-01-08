@@ -12,6 +12,7 @@ $gray-medium: #666;
 $shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 
 body {
+  margin: 0 !important;
   font-family: $font-family-base;
   -webkit-font-smoothing: antialiased; // Deixa a fonte mais suave em Mac/iOS
   -moz-osx-font-smoothing: grayscale;
