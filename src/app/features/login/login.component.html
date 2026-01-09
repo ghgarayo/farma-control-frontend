@@ -1,4 +1,6 @@
 <div class="page-container">
+  <p-toast />
+
   <section class="image-side">
     <div class="brand-info">
       <h1>Farma Control</h1>
@@ -11,29 +13,40 @@
       <h2>Acessar Sistema</h2>
       <p class="subtitle">Bem-vindo de volta! Por favor, insira seus dados.</p>
 
-      <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+      <form [formGroup]="loginForm" (ngSubmit)="handleLogin()" class="login-form">
+
         <div class="form-field">
           <label>E-mail</label>
           <input type="email" formControlName="username" placeholder="exemplo@farma.com">
         </div>
 
         <div class="form-field">
-          <label>Senha</label>
-          <input type="password" formControlName="password" placeholder="••••••••">
+          <label for="password">Senha</label>
+          <p-password
+            id="password"
+            formControlName="password"
+            [toggleMask]="true"
+            [feedback]="false"
+            placeholder="••••••••"
+            styleClass="w-full"
+            inputStyleClass="w-full"
+          ></p-password>
         </div>
 
-        @if (errorMessage()) {
-          <div class="error-message">{{ errorMessage() }}</div>
-        }
 
-        <button type="submit" [disabled]="loginForm.invalid || isLoading()">
-          {{ isLoading() ? 'Autenticando...' : 'Entrar no Sistema' }}
-        </button>
+        <p-button
+          type="submit"
+          label="Entrar no Sistema"
+          [loading]="isLoading()"
+          [disabled]="loginForm.invalid"
+          styleClass="w-full"
+        ></p-button>
+
       </form>
 
       <div class="footer-links">
-        <a routerLink="/auth/forgot-password">Esqueceu sua senha?</a>
-        <p>Não tem conta? <a routerLink="/auth/register">Falar com administrador</a></p>
+        <a routerLink="/auth/forgot-password" class="forgot-password">Esqueceu sua senha?</a>
+        <p>Não tem conta? <a routerLink="/signup">Cadastre-se</a></p>
       </div>
     </div>
   </section>

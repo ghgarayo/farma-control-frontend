@@ -1,0 +1,8 @@
+// Exporta todas as variáveis e mixins para uso nos componentes
+@forward 'variables';
+@forward 'mixins';
+
+// Importa para uso interno se necessário
+@use 'variables' as *;
+@use 'mixins' as *;
+

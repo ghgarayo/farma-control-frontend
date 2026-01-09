@@ -4,9 +4,11 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+
 import { routes } from './app.routes';
 
-// Registra o locale pt-BR
 registerLocaleData(localePt, 'pt-BR');
 
 export const appConfig: ApplicationConfig = {
@@ -14,6 +16,15 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withInterceptorsFromDi()),
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    providePrimeNG({
+      theme: {
+        preset: Aura, // Agora o preset será aplicado corretamente
+        options: {
+          darkModeSelector: '.my-app-dark', // Opcional: define como o tema escuro é ativado
+          ripple: true // Ativa o efeito de clique (ripple) nos botões
+        }
+      }
+    })
   ]
 };

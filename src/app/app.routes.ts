@@ -5,10 +5,10 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./features/login/login.component').then(m => m.LoginComponent)
   },
-  // {
-  //   path: 'register',
-  //   loadComponent: () => import('./features/auth/register/register.component').then(m => m.RegisterComponent)
-  // },
+  {
+    path: 'signup',
+    loadComponent: () => import('./features/sign-up/sign-up.component').then(m => m.SignUpComponent)
+  },
   // {
   //   path: 'forgot-password',
   //   loadComponent: () => import('./features/auth/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent)

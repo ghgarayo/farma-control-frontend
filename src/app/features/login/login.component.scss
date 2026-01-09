@@ -1,27 +1,31 @@
-@use '../../../styles' as *;
+@use '../../../../styles' as *;
 
 :host {
   display: block;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
   overflow: hidden;
 }
 
 .page-container {
   display: grid;
-  grid-template-columns: 65% 35%; // A divisão solicitada
+  grid-template-columns: 65% 35%;
   height: 100%;
+  min-height: 100vh;
   width: 100%;
+  margin: 0;
+  padding: 0;
 
-  // Lado Esquerdo: Imagem
   .image-side {
     position: relative;
-    background: url('../../../assets/images/login-pharmacy.jpg') no-repeat center center;    background-size: cover;
+    background: url('../../../assets/images/login-pharmacy.jpg') no-repeat center center;
+    background-size: cover;
     display: flex;
     align-items: flex-end;
     padding: 4rem;
+    min-height: 100vh;
 
-    // Overlay para garantir leitura do texto sobre a imagem
     &::before {
       content: '';
       position: absolute;
@@ -30,41 +34,34 @@
     }
 
     .brand-info {
-      position: relative; // Fica acima do overlay
+      position: relative;
       color: white;
       z-index: 1;
-
-      h1 {
-        font-size: 3.5rem;
-        margin-bottom: 0.5rem;
-        font-weight: 800;
-        letter-spacing: -1px;
-      }
-
-      p {
-        font-size: 1.2rem;
-        opacity: 0.9;
-      }
+      h1 { font-size: 3.5rem; margin-bottom: 0.5rem; font-weight: 800; letter-spacing: -1px; }
+      p { font-size: 1.2rem; opacity: 0.9; }
     }
   }
 
-  // Lado Direito: Formulário
   .form-side {
-    background-color: $white;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem;
     box-shadow: -10px 0 20px rgba(0,0,0,0.05);
+    min-height: 100vh;
+    overflow-y: auto;
 
     .auth-container {
       width: 100%;
-      max-width: 380px;
+      max-width: 420px;
+      padding: 1rem;
 
       h2 {
         color: $primary-color;
         font-size: 1.8rem;
         margin-bottom: 0.5rem;
+        margin-top: 0;
         font-weight: 700;
       }
 
@@ -74,8 +71,14 @@
         font-size: 0.95rem;
       }
 
+      .login-form {
+        width: 100%;
+      }
+
       .form-field {
         margin-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
 
         label {
           display: block;
@@ -85,44 +88,39 @@
           color: #444;
         }
 
-        input {
-          width: 100%;
-          padding: 0.85rem;
-          border: 1px solid #e0e0e0;
-          border-radius: 8px;
-          background-color: $gray-light;
-          transition: all 0.2s;
+        // TRUQUE DE SÊNIOR: Forçar componentes PrimeNG a ocupar 100%
+        ::ng-deep {
+          .p-inputtext,
+          .p-password,
+          .p-password-input,
+          input.p-inputtext {
+            width: 100% !important;
+            box-sizing: border-box;
+          }
 
-          &:focus {
-            outline: none;
-            border-color: $primary-color;
-            background-color: white;
-            box-shadow: 0 0 0 4px rgba($primary-color, 0.1);
+          .p-password {
+            display: block;
+            width: 100%;
           }
         }
       }
 
-      button {
+      // Estilizamos o botão através da classe do PrimeNG ou apenas garantindo largura
+      ::ng-deep .p-button {
         width: 100%;
-        padding: 1rem;
-        background-color: $primary-color;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-weight: 700;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: transform 0.1s, background 0.2s;
-
-        &:hover { background-color: $primary-dark; }
-        &:active { transform: scale(0.98); }
-        &:disabled { background-color: #ccc; cursor: not-allowed; }
+        margin-top: 1rem;
+        padding: 0.85rem;
       }
 
       .footer-links {
         margin-top: 2rem;
         text-align: center;
         font-size: 0.9rem;
+
+        .forgot-password {
+          display: block;
+          margin-bottom: 1rem;
+        }
 
         a {
           color: $primary-color;
@@ -131,18 +129,44 @@
           &:hover { text-decoration: underline; }
         }
 
-        p { margin-top: 1rem; color: #888; }
+        p {
+          margin-top: 1rem;
+          margin-bottom: 0;
+          color: #888;
+        }
       }
     }
   }
 }
 
-// Responsividade: Em telas pequenas, vira uma coluna única
+// Toast position fix
+::ng-deep {
+  .p-toast {
+    z-index: 9999 !important;
+  }
+}
+
 @media (max-width: 1024px) {
   .page-container {
     grid-template-columns: 1fr;
 
-    .image-side { display: none; }
-    .form-side { background-color: #f8f9fa; }
+    .image-side {
+      display: none;
+    }
+
+    .form-side {
+      min-height: 100vh;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .page-container .form-side .auth-container {
+    max-width: 100%;
+    padding: 0.5rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
   }
 }
