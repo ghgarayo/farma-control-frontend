@@ -1,0 +1,40 @@
+<div class="page-container">
+  <section class="image-side">
+    <div class="brand-info">
+      <h1>Farma Control</h1>
+      <p>Gestão inteligente para sua farmácia.</p>
+    </div>
+  </section>
+
+  <section class="form-side">
+    <div class="auth-container">
+      <h2>Acessar Sistema</h2>
+      <p class="subtitle">Bem-vindo de volta! Por favor, insira seus dados.</p>
+
+      <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+        <div class="form-field">
+          <label>E-mail</label>
+          <input type="email" formControlName="username" placeholder="exemplo@farma.com">
+        </div>
+
+        <div class="form-field">
+          <label>Senha</label>
+          <input type="password" formControlName="password" placeholder="••••••••">
+        </div>
+
+        @if (errorMessage()) {
+          <div class="error-message">{{ errorMessage() }}</div>
+        }
+
+        <button type="submit" [disabled]="loginForm.invalid || isLoading()">
+          {{ isLoading() ? 'Autenticando...' : 'Entrar no Sistema' }}
+        </button>
+      </form>
+
+      <div class="footer-links">
+        <a routerLink="/auth/forgot-password">Esqueceu sua senha?</a>
+        <p>Não tem conta? <a routerLink="/auth/register">Falar com administrador</a></p>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,19 @@
+<div class="home-container">
+  <header class="welcome-header">
+    <div class="user-info">
+      <h1>Olá!</h1>
+      <p>Bem-vindo ao painel do Farma Control.</p>
+    </div>
+
+    <div class="time-card">
+      <span class="date">{{ currentTime() | date: 'fullDate':'':'pt-BR' }}</span>
+      <span class="clock">{{ currentTime() | date: 'HH:mm:ss' }}</span>
+    </div>
+  </header>
+
+  <main class="dashboard-overview">
+    <div class="placeholder-card">
+      <p>O que vamos gerenciar hoje?</p>
+    </div>
+  </main>
+</div>
